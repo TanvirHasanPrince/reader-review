@@ -1,9 +1,9 @@
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/loginAnimation.json";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../redux/features/user/userSlice";
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 interface LoginFormInputs {
@@ -20,19 +20,17 @@ const LoginForm = () => {
 
   const { user, isLoading } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const onSubmit = (data: LoginFormInputs) => {
-    console.log(data);
     dispatch(loginUser({ email: data.email, password: data.password }));
   };
-  console.log(user);
-  console.log(isLoading);
-  //  useEffect(() => {
-  //    if (user.email && !isLoading) {
-  //      navigate("/");
-  //    }
-  //  }, [user?.email, isLoading]);
+
+   useEffect(() => {
+     if (user.email && !isLoading) {
+       navigate("/");
+     }
+   }, [isLoading, navigate, user.email]);
 
   return (
     <div>
