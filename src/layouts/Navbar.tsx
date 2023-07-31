@@ -18,7 +18,7 @@ const Navbar = () => {
     <div>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost normal-case text-xl">Readers Review</a>
+          <Link to='/' className="btn btn-ghost normal-case text-xl">Readers Review</Link>
         </div>
         <div className="navbar-end  md:flex hidden lg:flex">
           <ul className="menu lg:menu-horizontal md:menu-horizontal menu-dropdown-toggle text-black font-bold">
