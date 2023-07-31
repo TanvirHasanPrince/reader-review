@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
-import {  useAppSelector } from "../redux/hook";
+import {  useAppDispatch, useAppSelector } from "../redux/hook";
+import { signOut } from "firebase/auth";
+import { setUser } from "../redux/features/user/userSlice";
+import { auth } from "../utils/firebase";
+
+
 
 
 const Navbar = () => {
@@ -23,6 +28,14 @@ const Navbar = () => {
       )}
     </>
   );
+ const dispatch = useAppDispatch();
+
+    const handleLogout = () => {
+      signOut(auth).then(() => {
+        dispatch(setUser(null));
+      });
+    };
+
 
   return (
     <div>
@@ -79,7 +92,7 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li>
+                <li onClick={handleLogout}>
                   <a>Logout</a>
                 </li>
               </ul>

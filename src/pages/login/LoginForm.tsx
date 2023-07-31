@@ -11,31 +11,28 @@ interface LoginFormInputs {
   password: string;
 }
 
-
 const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormInputs>();
 
-   const {
-     register,
-     handleSubmit,
-     formState: { errors },
-   } = useForm<LoginFormInputs>();
+  const { user, isLoading } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
 
-    const { user, isLoading } = useAppSelector((state) => state.user);
-    const dispatch = useAppDispatch();
-    // const navigate = useNavigate();
-
-    const onSubmit = (data: LoginFormInputs) => {
-      console.log(data);
-      dispatch(loginUser({ email: data.email, password: data.password }));
-    };
-console.log(user);
-console.log(isLoading);
-    //  useEffect(() => {
-    //    if (user.email && !isLoading) {
-    //      navigate("/");
-    //    }
-    //  }, [user?.email, isLoading]);
-
+  const onSubmit = (data: LoginFormInputs) => {
+    console.log(data);
+    dispatch(loginUser({ email: data.email, password: data.password }));
+  };
+  console.log(user);
+  console.log(isLoading);
+  //  useEffect(() => {
+  //    if (user.email && !isLoading) {
+  //      navigate("/");
+  //    }
+  //  }, [user?.email, isLoading]);
 
   return (
     <div>
@@ -90,12 +87,7 @@ console.log(isLoading);
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
-              <span className="text-center"> or </span>
             </form>
-
-            <div className="form-control mx-5 my-2">
-              <button className="btn btn-secondary">Login with google</button>
-            </div>
           </div>
         </div>
       </div>
