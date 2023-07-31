@@ -1,8 +1,10 @@
+import MainLayout from "./layouts/MainLayout";
+
 function App() {
   return (
-
-      <h1 className="">Hello!</h1>
- 
+    <div className="max-w-[1440px] m-auto">
+      <MainLayout />
+    </div>
   );
 }
 
