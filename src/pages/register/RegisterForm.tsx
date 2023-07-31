@@ -1,7 +1,24 @@
 import Lottie from "lottie-react";
 import registerAnimation from "../../assets/register.json";
+import { useForm } from "react-hook-form";
+import { useAppDispatch } from "../../redux/hook";
+import { createUser } from "../../redux/features/user/userSlice";
+
+interface SignupFormInputs {
+  email: string;
+  password: string;
+}
 
 const RegisterForm = () => {
+  const { register, handleSubmit } = useForm<SignupFormInputs>();
+
+  const dispatch = useAppDispatch();
+
+  const onSubmit = (data: SignupFormInputs) => {
+    console.log(data);
+    dispatch(createUser({ email: data.email, password: data.password }));
+  };
+
   return (
     <div>
       <div>
@@ -15,18 +32,23 @@ const RegisterForm = () => {
                 animationData={registerAnimation}
                 loop={true}
               />
-              ;
+              
             </div>
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-              <div className="card-body">
+              <form className="card-body " onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text">Email</span>
                   </label>
                   <input
-                    type="text"
-                    placeholder="email"
                     className="input input-bordered"
+                    id="email"
+                    placeholder="name@example.com"
+                    type="email"
+                    autoCapitalize="none"
+                    autoComplete="email"
+                    autoCorrect="off"
+                    {...register("email", { required: "Email is required" })}
                   />
                 </div>
                 <div className="form-control">
@@ -34,15 +56,21 @@ const RegisterForm = () => {
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    type="text"
-                    placeholder="password"
                     className="input input-bordered"
+                    id="password"
+                    placeholder="your password"
+                    type="password"
+                    autoCapitalize="none"
+                    autoComplete="password"
+                    {...register("password", {
+                      required: "Password is required",
+                    })}
                   />
                 </div>
                 <div className="form-control mt-6">
                   <button className="btn btn-primary">Register</button>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
