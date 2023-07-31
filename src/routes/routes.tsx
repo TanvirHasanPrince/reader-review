@@ -3,6 +3,7 @@ import NotFound from "../pages/NotFound";
 import Home from "../pages/Home/Home";
 import App from "../App";
 import LoginForm from "../pages/login/LoginForm";
+import RegisterForm from "../pages/register/RegisterForm";
 
 
 const routes = createBrowserRouter([
@@ -17,6 +18,10 @@ const routes = createBrowserRouter([
       {
         path: "/login",
         element: <LoginForm></LoginForm>,
+      },
+      {
+        path: "/register",
+        element: <RegisterForm></RegisterForm>,
       },
     ],
   },
