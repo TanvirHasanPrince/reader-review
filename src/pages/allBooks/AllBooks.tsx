@@ -52,6 +52,8 @@ const AllBooks = () => {
     new Set(data?.data.map((book: IBook) => book.publication_data)) || []
   );
 
+
+
   const booksToShow =
     query || genreFilter || publicationYearFilter ? results : data?.data || [];
 
@@ -69,7 +71,7 @@ const AllBooks = () => {
             className="select select-bordered w-full"
             value={genreFilter || ""}
             onChange={(e) =>
-              dispatch(updateGenreFilter(e.target.value || null))
+              dispatch(updateGenreFilter(e.target.value as string || null))
             }
           >
             <option value="">Filter by Genre</option>
