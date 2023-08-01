@@ -5,6 +5,8 @@ import App from "../App";
 import LoginForm from "../pages/login/LoginForm";
 import RegisterForm from "../pages/register/RegisterForm";
 import AllBooks from "../pages/allBooks/AllBooks";
+import AddNewBook from "../pages/allBooks/AddNewBook";
+import PrivateRoute from "./PrivateRoute";
 
 
 const routes = createBrowserRouter([
@@ -27,6 +29,14 @@ const routes = createBrowserRouter([
       {
         path: "/allbooks",
         element: <AllBooks></AllBooks>,
+      },
+      {
+        path: "/add-new-book",
+        element: (
+          <PrivateRoute>
+            <AddNewBook></AddNewBook>
+          </PrivateRoute>
+        ),
       },
     ],
   },

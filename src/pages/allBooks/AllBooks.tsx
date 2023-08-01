@@ -10,6 +10,7 @@ import {
   updatePublicationYearFilter,
   updateResults,
 } from "../../redux/features/books/bookSlice";
+import { Link } from "react-router-dom";
 
 const AllBooks = () => {
   const dispatch = useAppDispatch();
@@ -71,7 +72,7 @@ const AllBooks = () => {
             className="select select-bordered w-full"
             value={genreFilter || ""}
             onChange={(e) =>
-              dispatch(updateGenreFilter(e.target.value as string || null))
+              dispatch(updateGenreFilter((e.target.value as string) || null))
             }
           >
             <option value="">Filter by Genre</option>
@@ -98,6 +99,9 @@ const AllBooks = () => {
             ))}
           </select>
         </div>
+        <Link to="/add-new-book" className="mt-5 btn btn-accent w-full">
+          Add new book
+        </Link>
       </div>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-1 lg:grid-cols-4">
         {booksToShow.map((book: IBook) => (
