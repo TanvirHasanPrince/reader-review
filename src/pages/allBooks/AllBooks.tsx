@@ -37,7 +37,7 @@ const AllBooks = () => {
 
   return (
     <div className="flex">
-      <div className="m-10">
+      <div className="m-10 flex ">
         <input
           type="text"
           placeholder="Search here"
@@ -45,10 +45,10 @@ const AllBooks = () => {
           onChange={(e) => dispatch(updateQuery(e.target.value))}
         />
         <button
-          className="btn btn-secondary "
+          className="btn btn-secondary px-5 ml-5 "
           onClick={() => dispatch(updateQuery(""))}
         >
-          Clear Search
+          Search
         </button>
       </div>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-1 lg:grid-cols-4">
