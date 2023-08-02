@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
 import loginAnimation from "../../assets/loginAnimation.json";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../../redux/features/user/userSlice";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -21,16 +21,23 @@ const LoginForm = () => {
   const { user, isLoading } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const onSubmit = (data: LoginFormInputs) => {
     dispatch(loginUser({ email: data.email, password: data.password }));
   };
 
-   useEffect(() => {
-     if (user.email && !isLoading) {
-       navigate("/");
-     }
-   }, [isLoading, navigate, user.email]);
+  useEffect(() => {
+    if (user.email && !isLoading) {
+      // If there is a 'from' property in the state, redirect to that path.
+      // Otherwise, redirect to the homepage ('/') by default.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const fromPath = (location.state as any)?.from;
+      navigate(fromPath || "/");
+    }
+  }, [isLoading, navigate, user.email, location.state]);
+
+
 
   return (
     <div>
