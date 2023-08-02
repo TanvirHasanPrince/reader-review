@@ -16,7 +16,7 @@ const PrivateRoute = ({ children }: IProps) => {
 
   // Check if the user is authenticated (i.e., has a valid email) before rendering the protected content.
   // If the user is not authenticated, redirect them to the login page with the current location path preserved in the state.
-  if (!user.email && !isLoading) {
+  if (!user.email) {
     return <Navigate to="/login" state={{ from: pathname }} />;
   }
 

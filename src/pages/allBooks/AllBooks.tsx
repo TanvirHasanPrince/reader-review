@@ -105,7 +105,7 @@ const AllBooks = () => {
       </div>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-1 lg:grid-cols-4">
         {booksToShow.map((book: IBook) => (
-          <BookCard book={book} key={book.title} />
+          <BookCard book={book} key={book._id} />
         ))}
       </div>
     </div>

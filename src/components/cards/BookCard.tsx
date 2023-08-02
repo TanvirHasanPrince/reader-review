@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
+
 export interface IBook {
+  _id: string
   title: string;
   author: string;
   genre: string;
@@ -11,7 +14,7 @@ export interface BookCardProps {
 }
 
 const BookCard = ({ book }: BookCardProps) => {
-  const { title, author, image } = book;
+  const { _id, title, author, image} = book;
   return (
     <div className="py-10">
       <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-lg">
@@ -30,6 +33,7 @@ const BookCard = ({ book }: BookCardProps) => {
           <p className="mb-3 md:text-lg lg:text-lg text-sm italic text-white font-bold lg:opacity-0 transition-opacity duration-300 group-hover:opacity-100 text-ellipsis">
             {author}
           </p>
+          <Link to={`book-details/${_id}`} className="btn btn-secondary">See More Details</Link>
         </div>
       </div>
     </div>

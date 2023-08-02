@@ -7,6 +7,7 @@ import RegisterForm from "../pages/register/RegisterForm";
 import AllBooks from "../pages/allBooks/AllBooks";
 import AddNewBook from "../pages/allBooks/AddNewBook";
 import PrivateRoute from "./PrivateRoute";
+import SingleBook from "../pages/allBooks/SingleBook";
 
 
 const routes = createBrowserRouter([
@@ -29,6 +30,14 @@ const routes = createBrowserRouter([
       {
         path: "/allbooks",
         element: <AllBooks></AllBooks>,
+      },
+      {
+        path: "/book-details/:id",
+        element: <SingleBook></SingleBook>,
+      },
+      {
+        path: "/allbooks/book-details/:id",
+        element: <SingleBook></SingleBook>,
       },
       {
         path: "/add-new-book",
