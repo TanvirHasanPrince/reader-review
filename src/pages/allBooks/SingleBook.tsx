@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetSigleBookQuery } from "../../redux/features/books/booksApi";
+import ReviewCard from "../../components/cards/ReviewCard";
 
 const SingleBook = () => {
   const { id } = useParams();
@@ -33,12 +34,14 @@ const SingleBook = () => {
             <h1 className="font-bold">Summary</h1> {book?.summary}
           </p>
           <div className="p-10 flex items-center justify-center flex-col md:flex-row lg:flex-row">
-            <button className="btn btn-info my-5 md:mx-5 lg:mx-5">Edit Book</button>
-            <button className="btn btn-error">Delete Book</button>
+            <button className="btn btn-info my-5 md:mx-5 lg:mx-5">
+              Edit Book Information
+            </button>
+            <button className="btn btn-error">Delete The Book</button>
           </div>
         </div>
       </div>
-      {/* <bookReview id={id!} /> */}
+      <ReviewCard id={id!} />
     </div>
   );
 };
