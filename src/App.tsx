@@ -4,6 +4,7 @@ import { setLoading, setUser } from "./redux/features/user/userSlice";
 import { useAppDispatch } from "./redux/hook";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase";
+import { Toaster } from "react-hot-toast";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
   return (
     <div className="max-w-[1440px] m-auto">
       <MainLayout />
+      <Toaster />
     </div>
   );
 }
