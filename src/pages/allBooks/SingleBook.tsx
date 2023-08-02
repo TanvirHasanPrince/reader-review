@@ -16,13 +16,24 @@ const SingleBook = () => {
         </div>
         <div className="w-[50%] space-y-3 p-10">
           <h1 className="text-3xl font-semibold">{book?.title}</h1>
-          <p className="text-xl">Author: {book?.author}</p>
-          <p className="text-xl">Genre: {book?.genre}</p>
-          <p className="text-xl">Publication Date: {book?.publication_data}</p>
-          <p className="text-xl">Publication Date: {book?.summary}</p>
-
-          <button className="btn btn-info">Edit</button>
-          <button className="btn btn-error">Delete</button>
+          <p className="text-xl">
+            <span className="font-bold">Author: </span>
+            {book?.author}
+          </p>
+          <p className="text-xl">
+            <span className="font-bold">Genre: </span> {book?.genre}
+          </p>
+          <p className="text-xl">
+            <span className="font-bold">Publication Date: </span>
+            {book?.publication_data}
+          </p>
+          <p className="text-xl">
+            <h1 className="font-bold">Summary</h1> {book?.summary}
+          </p>
+          <div className="p-10">
+            <button className="btn btn-info mx-5 ">Edit Book</button>
+            <button className="btn btn-error">Delete Book</button>
+          </div>
         </div>
       </div>
       {/* <bookReview id={id!} /> */}
