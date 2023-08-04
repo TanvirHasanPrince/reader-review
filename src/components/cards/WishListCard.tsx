@@ -1,6 +1,7 @@
 import { useAppDispatch } from '../../redux/hook';
 import {removeFromWishlist } from '../../redux/features/wishListRedux/wishListSlice';
 import { Link } from 'react-router-dom';
+import toast, { Toaster } from "react-hot-toast";
 
 export interface IBook {
   _id: string
@@ -17,20 +18,27 @@ export interface BookCardProps {
 
 }
 
+const notify = () => {
+  toast.success("Book removed successfully from wishlist", {
+    duration: 1000, // Optional: Set the duration of the toast
+  });
+};
   
 
 const WishListCard = ({ book }: BookCardProps) => {
      const dispatch = useAppDispatch();
-
   const handleRemoveFromWishList = (book: IBook) => {
     dispatch(removeFromWishlist(book));
-
+notify();
 
   };
+
+
 
    const { _id, title, author, image } = book;
  return (
    <div>
+     <Toaster /> {/* Add this line to render the toast container */}
      <div className="py-10">
        <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-lg">
          <div className="h-96 w-full ">

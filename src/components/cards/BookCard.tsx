@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hook";
 import { addToWishlist } from "../../redux/features/wishListRedux/wishListSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 
 export interface IBook {
@@ -18,14 +19,21 @@ export interface BookCardProps {
 
 }
 
-  
+      const notify = () => {
+        toast.success("Book added successfully to wishlist", {
+          duration: 2000, // Optional: Set the duration of the toast
+        });
+      };
 
 const BookCard = ({ book }: BookCardProps) => {
     const dispatch = useAppDispatch();
 
+
+  
+
   const handleAddToWishlist = (book: IBook) => {
     dispatch(addToWishlist(book));
-
+notify()
 
   };
 
@@ -33,6 +41,7 @@ const BookCard = ({ book }: BookCardProps) => {
   const { _id, title, author, image} = book;
   return (
     <div className="py-10">
+      <Toaster /> {/* Add this line to render the toast container */}
       <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-lg">
         <div className="h-96 w-full ">
           <img
