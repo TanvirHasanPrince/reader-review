@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAddBookMutation } from "../../redux/features/books/booksApi";
+import toast, { Toaster } from "react-hot-toast";
 
 
 const AddNewBook = () => {
@@ -9,7 +10,13 @@ const AddNewBook = () => {
  const [publicationYear, setPublicationYear] = useState("");
  const [image, setImage] = useState("");
  const [summary, setSummary] = useState("");
- const [addBook, { isLoading, isError, isSuccess }] = useAddBookMutation();
+ const [addBook, { isLoading, isError }] = useAddBookMutation();
+
+ const notify = () => {
+   toast.success("Book added successfully", {
+     duration: 1000, // Optional: Set the duration of the toast
+   });
+ };
 
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
@@ -29,7 +36,7 @@ console.log(newBook);
 
        addBook(newBook);
    
-
+notify();
       // Clear form fields after successful submission
       setTitle("");
       setAuthor("");
@@ -44,6 +51,7 @@ console.log(newBook);
 
  return (
    <div className="m-5">
+     <Toaster /> {/* Add this line to render the toast container */}
      <h1 className="text-center text-red-600 font-bold text-xl">
        Add a New Book
      </h1>
@@ -97,7 +105,7 @@ console.log(newBook);
          {isLoading ? "Adding..." : "Add New Book"}
        </button>
        {/* Show success or error message */}
-       {isSuccess && <p className="text-green-500">Book added successfully!</p>}
+
        {isError && <p className="text-red-500">Failed to add book.</p>}
      </form>
    </div>
