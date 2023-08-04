@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hook";
+import { addToWishlist } from "../../redux/features/wishListRedux/wishListSlice";
+
 
 export interface IBook {
   _id: string
@@ -11,9 +14,22 @@ export interface IBook {
 }
 export interface BookCardProps {
   book: IBook;
+
+
 }
 
+  
+
 const BookCard = ({ book }: BookCardProps) => {
+    const dispatch = useAppDispatch();
+
+  const handleAddToWishlist = (book: IBook) => {
+    dispatch(addToWishlist(book));
+
+
+  };
+
+
   const { _id, title, author, image} = book;
   return (
     <div className="py-10">
@@ -33,7 +49,15 @@ const BookCard = ({ book }: BookCardProps) => {
           <p className="mb-3 md:text-lg lg:text-lg text-sm italic text-white font-bold lg:opacity-0 transition-opacity duration-300 group-hover:opacity-100 text-ellipsis">
             {author}
           </p>
-          <Link to={`book-details/${_id}`} className="btn btn-secondary">See More Details</Link>
+          <Link to={`book-details/${_id}`} className="btn btn-secondary">
+            See More Details
+          </Link>
+          <button
+            className="btn btn-primay mt-2"
+            onClick={() => handleAddToWishlist(book)}
+          >
+            Add to wishlist
+          </button>
         </div>
       </div>
     </div>
