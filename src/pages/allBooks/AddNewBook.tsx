@@ -8,10 +8,11 @@ const AddNewBook = () => {
  const [genre, setGenre] = useState("");
  const [publicationYear, setPublicationYear] = useState("");
  const [image, setImage] = useState("");
+ const [summary, setSummary] = useState("");
  const [addBook, { isLoading, isError, isSuccess }] = useAddBookMutation();
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
 
     try {
@@ -21,12 +22,13 @@ const AddNewBook = () => {
         genre,
         publication_data: publicationYear,
         image,
-        reviews: [],
+        summary,
+
       };
+console.log(newBook);
 
-      const serializedData = JSON.stringify(newBook);
-
-      await addBook(serializedData);
+       addBook(newBook);
+   
 
       // Clear form fields after successful submission
       setTitle("");
@@ -34,6 +36,7 @@ const AddNewBook = () => {
       setGenre("");
       setPublicationYear("");
       setImage("");
+      setSummary("");
     } catch (error) {
       console.error("Error adding book:", error);
     }
@@ -51,26 +54,43 @@ const AddNewBook = () => {
        <input
          type="text"
          placeholder="Title"
+         value={title}
+         onChange={(e) => setTitle(e.target.value)}
          className="input input-bordered w-2/4 m-2"
        />
        <input
          type="text"
          placeholder="Author"
+         value={author}
+         onChange={(e) => setAuthor(e.target.value)}
          className="input input-bordered w-2/4 m-2"
        />
        <input
          type="text"
          placeholder="Genre"
+         value={genre}
+         onChange={(e) => setGenre(e.target.value)}
          className="input input-bordered w-2/4 m-2"
        />
        <input
          type="text"
          placeholder="Publication year"
+         value={publicationYear}
+         onChange={(e) => setPublicationYear(e.target.value)}
          className="input input-bordered w-2/4 m-2"
        />
        <input
          type="text"
          placeholder="Cover Image Link"
+         value={image}
+         onChange={(e) => setImage(e.target.value)}
+         className="input input-bordered w-2/4 m-2"
+       />
+       <input
+         type="text"
+         placeholder="Summary"
+         value={summary}
+         onChange={(e) => setSummary(e.target.value)}
          className="input input-bordered w-2/4 m-2"
        />
        <button className="btn btn-accent w-2/4" type="submit">
