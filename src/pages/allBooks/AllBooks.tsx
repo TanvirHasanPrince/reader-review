@@ -46,12 +46,15 @@ const AllBooks = () => {
     return <div>Error occurred while fetching data.</div>;
   }
 
-  const genres = Array.from(
-    new Set(data?.data.map((book: IBook) => book.genre)) || []
+
+  const genres: string[] = Array.from(
+    new Set(data?.data.map((book: IBook) => book.genre as string)) || []
   );
-  const publicationYears = Array.from(
-    new Set(data?.data.map((book: IBook) => book.publication_data)) || []
-  );
+ const publicationYears: string[] = Array.from(
+   new Set(data?.data.map((book: IBook) => book.publication_data as string)) ||
+     []
+ );
+
 
 
 

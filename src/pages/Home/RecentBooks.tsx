@@ -14,7 +14,7 @@ const RecentBooks = () => {
   return (
     <div className="p-20">
       <h1 className="text-5xl font-[imported] text-red-600 text-center">
-        Most recent book added to our list
+        Most recent books added to our list
       </h1>
       {isLoading ? (
         <div className="flex justify-center items-start">
