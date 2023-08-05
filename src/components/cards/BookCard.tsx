@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAppDispatch } from "../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { addToWishlist } from "../../redux/features/wishListRedux/wishListSlice";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -27,6 +27,7 @@ export interface BookCardProps {
 
 const BookCard = ({ book }: BookCardProps) => {
     const dispatch = useAppDispatch();
+    const { user } = useAppSelector((state) => state.user);
 
 
   
@@ -61,12 +62,14 @@ notify()
           <Link to={`book-details/${_id}`} className="btn btn-secondary">
             See More Details
           </Link>
-          <button
-            className="btn btn-primay mt-2"
-            onClick={() => handleAddToWishlist(book)}
-          >
-            Add to wishlist
-          </button>
+          {user?.email && (
+            <button
+              className="btn btn-primay mt-2"
+              onClick={() => handleAddToWishlist(book)}
+            >
+              Add to wishlist
+            </button>
+          )}
         </div>
       </div>
     </div>
