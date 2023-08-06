@@ -57,7 +57,7 @@ const ReviewCard = ({ id }: IProps )=> {
            placeholder="Want to add review?"
          />
          <button type="submit" className="btn btn-accent">
-           {isLoading ? "Adding Your Review" : "Add New Book"}
+           {isLoading ? "Adding Your Review" : "Add a review"}
          </button>
 
 
