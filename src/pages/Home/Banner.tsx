@@ -1,5 +1,6 @@
 import Lottie from "lottie-react";
 import bannerAnimation from '../../assets/banner-reading-animation.json'
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -19,9 +20,9 @@ const Banner = () => {
               imagination, and find your perfect read. Welcome to a world of
               endless stories and boundless joy. Let's explore together!
             </p>
-            <button className="btn btn-secondary">
+            <Link to="/allbooks" className="btn btn-secondary">
               See All The Books Now!
-            </button>
+            </Link>
           </div>
         </div>
       </div>
